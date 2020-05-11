@@ -53,10 +53,10 @@ void Queue<T>::enQueue(T value)
     {
         // Advance front index
         front = (front + 1) % capacity;
-    }
 
-    // Increment size
-    else size++;
+        // Decrement size
+        size--;
+    }
 
     // If first element, set front  = 0
     else if (front == -1) front = 0;
@@ -66,6 +66,9 @@ void Queue<T>::enQueue(T value)
 
     // Insert value in rear index
     arr[rear] = value;
+
+    // Increment size
+    size++;
 }
 
 // Delete element from the buffer
@@ -79,9 +82,6 @@ bool Queue<T>::deQueue(T& itemStore)
         return false;
     }
 
-    // Decrement size
-    else size--;
-
     // Get the item and store it
     itemStore = arr[front];
 
@@ -94,6 +94,8 @@ bool Queue<T>::deQueue(T& itemStore)
     // Advance front index, take care of normal condition and the wrap around
     else front = (front + 1) % capacity;
 
+    // Decrement size
+    size--;
     return true;
 }
 
